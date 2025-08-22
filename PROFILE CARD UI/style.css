@@ -4,9 +4,9 @@
 }
 
 body {
-  color: #2b2c48;
+  color: #000000;
   font-family: "Jost", sans-serif;
-  background-image: url(http://drive.google.com/uc?export=view&id=1_CRK7ZdTQ6Vxor5Lo8e74b8WISAkoa7x);
+  background-image: url(/My\ pic.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -196,7 +196,7 @@ body {
   margin-right: 10px;
 }
 .card-social a:hover svg {
-  fill: #637faa;
+  fill: #000000;
 }
 .card-social a:last-child {
   margin-right: 0;
@@ -221,7 +221,7 @@ body {
   border: 0;
   padding: 15px 5px;
   cursor: pointer;
-  color: #5c5c6d;
+  color: #000000;
   transition: 0.3s;
   font-family: "Jost", sans-serif;
   font-weight: 500;
@@ -229,8 +229,8 @@ body {
   border-bottom: 3px solid transparent;
 }
 .card-buttons button.is-active, .card-buttons button:hover {
-  color: #2b2c48;
-  border-bottom: 3px solid #8a84ff;
+  color: #000000;
+  border-bottom: 3px solid #000000;
   background: linear-gradient(to bottom, rgba(127, 199, 231, 0) 0%, rgba(207, 204, 255, 0.2) 44%, rgba(211, 226, 255, 0.4) 100%);
 }
 

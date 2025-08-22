@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>CREATED BY VARAD1455 -Word Scramble Game</title>
-  <link rel="website icon"  type="png" href="https://th.bing.com/th/id/R.2a881620c4d987511e3a98f14206edbd?rik=7AgKfKO%2f9R7XOQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_282872.png&ehk=vI68NfItn%2bv%2fxeqSYOEgpYrAJgmrEZ6%2biNXBOuxfWsA%3d&risl=&pid=ImgRaw&r=0">
+  <link rel="icon" type="image/png" href="./logo1.png">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -11,7 +11,7 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="container">
-  <h1>WORD SCRAMBLE</h1>
+  <h1><img src="./logo1.png" alt="Game Logo" class="header-logo"> WORD SCRAMBLE</h1>
   <div class="content">
     <div class='container2'>
       <h6 class="wordhint"><span class="material-symbols-outlined">warning</span><br> Look carefully Below Word</h6>
@@ -20,15 +20,23 @@
     <div class="details">
       <p class="hint"><b class="hint1">Hint: </b><span></span></p>
       <p class="time">Time Left: <span><b>30</b>s</span></p>
+      <p class="score">Score: <span><b>0</b></span></p>
+      <p class="highscore">High Score: <span><b>0</b></span></p>
+      <p class="revealed-letters">Revealed: <span></span></p>
     </div>
     <input type="text" spellcheck="false" placeholder="Enter a valid word">
     <div class="buttons">
       <button class="refresh-word">Refresh Word</button>
+      <button class="reveal-letter">Reveal (-1pt)</button>
       <button class="check-word">Check Word</button>
     </div>
   </div>
 </div>
 <!-- partial -->
+  <!-- Audio files for sound effects -->
+  <audio id="correct-sound" src="./sounds/correct.mp3" preload="auto"></audio>
+  <audio id="incorrect-sound" src="./sounds/incorrect.mp3" preload="auto"></audio>
+
   <script  src="./script.js"></script>
 
 </body>
