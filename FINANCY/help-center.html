@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Financify</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Financify</a>
+            <div class="nav-right" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html#dashboard">Dashboard</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <button id="theme-toggle" class="theme-toggle-btn">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="help-hero">
+        <div class="container">
+            <h1>Help Center</h1>
+            <p>How can we help you today?</p>
+            <div class="search-bar-container">
+                <i class="fas fa-search"></i>
+                <input type="search" id="help-search" placeholder="Search for answers (e.g., 'link bank')">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="faq-section">
+            <div class="container">
+                <div class="faq-category">
+                    <h3><i class="fas fa-user-circle"></i> Account & Security</h3>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is my financial data secure?</summary>
+                        <div class="faq-answer">
+                            <p>Absolutely. We use bank-level 256-bit TLS encryption for all data transmission and partner with industry-leading aggregators to handle bank connections securely. We also support multi-factor authentication to protect your account. For more details, please visit our <a href="features.html#security">Security page</a>.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I reset my password?</summary>
+                        <div class="faq-answer">
+                            <p>If you've forgotten your password, you can click the "Forgot password?" link on the <a href="login.html">login page</a>. You will receive an email with instructions on how to reset it.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I change my email address?</summary>
+                        <div class="faq-answer">
+                            <p>You can change your email address from the 'Profile' section in your account settings. For security reasons, you will be asked to confirm this change via an email sent to your new address.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-category">
+                    <h3><i class="fas fa-link"></i> Connecting Accounts</h3>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I link my bank account?</summary>
+                        <div class="faq-answer">
+                            <p>To link your bank account, navigate to the 'Accounts' section in your dashboard and click 'Add Account'. You will be prompted to select your bank and securely log in using your bank credentials through our trusted third-party partner. Your credentials are never stored on our servers.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I track my investments?</summary>
+                        <div class="faq-answer">
+                            <p>Yes! You can connect your brokerage and crypto accounts in the 'Investments' section. This will give you a complete overview of your portfolio, performance, and asset allocation, all in one place.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What if my bank is not listed?</summary>
+                        <div class="faq-answer">
+                            <p>We are constantly working to add support for more financial institutions. If your bank is not listed, please <a href="contact.html">contact our support team</a> with the name of your bank, and we will do our best to prioritize its addition.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-category">
+                    <h3><i class="fas fa-cogs"></i> Using Financify</h3>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I create a budget?</summary>
+                        <div class="faq-answer">
+                            <p>You can create a budget from the 'Budgeting' tab. Select 'Create New Budget', choose a category (e.g., Groceries, Transport), and set a monthly limit. Financify will automatically track your spending in that category against your budget.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How are my transactions categorized?</summary>
+                        <div class="faq-answer">
+                            <p>Financify uses a smart categorization engine that automatically assigns a category to your transactions based on the merchant name. You can always manually change the category for any transaction to better suit your needs.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Does Financify have a mobile app?</summary>
+                        <div class="faq-answer">
+                            <p>Currently, Financify is a web-based platform fully optimized for mobile browsers. A dedicated mobile app for iOS and Android is in development and will be released soon!</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div id="no-faq-results" class="no-results-message" style="display: none;">
+                    <h3>No Results Found</h3>
+                    <p>We couldn't find any answers matching your search. Please try different keywords or contact our support team.</p>
+                </div>
+
+                <div class="contact-support-cta">
+                    <h3>Can't find what you're looking for?</h3>
+                    <p>Our support team is here to help. Get in touch with us for personalized assistance.</p>
+                    <a href="contact.html" class="btn btn-primary">Contact Support</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Financify</h3>
+                    <p>Your trusted partner in achieving financial wellness. Manage your money with confidence.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Go To</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="help-center.html">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <a href="facebook.html"><i class="fab fa-facebook-f"></i></a>
+                    <a href="twitter.html"><i class="fab fa-twitter"></i></a>
+                    <a href="linkedin.html"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Financify. All rights reserved. | Created by VARAD1455</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="back-to-top" class="back-to-top-btn"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>
