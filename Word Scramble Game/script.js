@@ -6,7 +6,9 @@ const wordText = document.querySelector(".word"),
   highScoreText = document.querySelector(".highscore b"),
   inputField = document.querySelector("input"),
   refreshBtn = document.querySelector(".refresh-word"),
-  checkBtn = document.querySelector(".check-word");
+  checkBtn = document.querySelector(".check-word"),
+  revealBtn = document.querySelector(".reveal-letter"),
+  revealedText = document.querySelector(".revealed-letters span");
 
 // Select audio elements
 const correctSound = document.getElementById("correct-sound");
@@ -28,7 +30,7 @@ let words = [
     { word: "country", hint: "A politically identified region" },
 ];
 
-let correctWord, timer;
+let correctWord, timer, revealedIndices;
 let score = 0;
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreText.innerText = highScore;
@@ -67,6 +69,10 @@ const initGame = () => {
   inputField.value = "";
   inputField.setAttribute("placeholder", "Enter a valid word");
   scoreText.innerText = score; // Update score display
+
+  // Reset revealed letters feature
+  revealedIndices = [];
+  revealedText.innerText = "_ ".repeat(correctWord.length).trim();
 };
 
 // Function to check the user's word
@@ -99,6 +105,41 @@ const checkWord = () => {
   initGame(); // Load a new word to continue the game
 };
 
+// Function to reveal a letter
+const revealLetter = () => {
+    if (score <= 0) {
+        return alert("You need at least 1 point to reveal a letter!");
+    }
+
+    // Find indices that have not been revealed yet
+    const unrevealedPositions = [];
+    for (let i = 0; i < correctWord.length; i++) {
+        if (!revealedIndices.includes(i)) {
+            unrevealedPositions.push(i);
+        }
+    }
+
+    if (unrevealedPositions.length === 0) {
+        return alert("All letters have been revealed!");
+    }
+
+    // Deduct score
+    score--;
+    scoreText.innerText = score;
+
+    // Pick a random unrevealed index
+    const randomIndex = Math.floor(Math.random() * unrevealedPositions.length);
+    const indexToReveal = unrevealedPositions[randomIndex];
+    revealedIndices.push(indexToReveal);
+
+    // Update the displayed revealed letters
+    const revealedDisplay = correctWord.split('').map((letter, index) => {
+        return revealedIndices.includes(index) ? letter : "_";
+    }).join(" ");
+    revealedText.innerText = revealedDisplay;
+};
+
 initGame();
 refreshBtn.addEventListener("click", endGameAndRestart);
 checkBtn.addEventListener("click", checkWord);
+revealBtn.addEventListener("click", revealLetter);
