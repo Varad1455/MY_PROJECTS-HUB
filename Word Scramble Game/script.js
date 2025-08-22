@@ -1,113 +1,43 @@
-// Array of words with their corresponding hints
-
-let words = [
-  // Each object represents a word and its hint
-  {
-    word: "farming",
-    hint: "farmer's can do"
-  },
-  {
-    word: "addition",
-    hint: "The process of adding numbers"
-  },
-  {
-    word: "meeting",
-    hint: "Event in which people come together"
-  },
-  {
-    word: "number",
-    hint: "Math symbol used for counting"
-  },
-  {
-    word: "exchange",
-    hint: "The act of trading"
-  },
-  {
-    word: "canvas",
-    hint: "Piece of fabric for oil painting"
-  },
-  {
-    word: "garden",
-    hint: "Space for planting flower and plant"
-  },
-  {
-    word: "position",
-    hint: "Location of someone or something"
-  },
-  {
-    word: "feather",
-    hint: "Hair like outer covering of bird"
-  },
-  {
-    word: "comfort",
-    hint: "A pleasant feeling of relaxation"
-  },
-  {
-    word: "tongue",
-    hint: "The muscular organ of mouth"
-  },
-  {
-    word: "expansion",
-    hint: "The process of increase or grow"
-  },
-  {
-    word: "country",
-    hint: "A politically identified region"
-  },
-  {
-    word: "group",
-    hint: "A number of objects or persons"
-  },
-  {
-    word: "taste",
-    hint: "Ability of tongue to detect flavour"
-  },
-  {
-    word: "store",
-    hint: "Large shop where goods are traded"
-  },
-  {
-    word: "field",
-    hint: "Area of land for farming activities"
-  },
-  {
-    word: "friend",
-    hint: "Person other than a family member"
-  },
-  {
-    word: "pocket",
-    hint: "A bag for carrying small items"
-  },
-  {
-    word: "needle",
-    hint: "A thin and sharp metal pin"
-  },
-  {
-    word: "expert",
-    hint: "Person with extensive knowledge"
-  },
-  {
-    word: "statement",
-    hint: "A declaration of something"
-  },
-  {
-    word: "second",
-    hint: "One-sixtieth of a minute"
-  },
-  {
-    word: "library",
-    hint: "Place containing collection of books"
-  }
-];
-
+// Select all necessary DOM elements
 const wordText = document.querySelector(".word"),
   hintText = document.querySelector(".hint span"),
   timeText = document.querySelector(".time b"),
+  scoreText = document.querySelector(".score b"),
+  highScoreText = document.querySelector(".highscore b"),
   inputField = document.querySelector("input"),
   refreshBtn = document.querySelector(".refresh-word"),
   checkBtn = document.querySelector(".check-word");
 
+// Select audio elements
+const correctSound = document.getElementById("correct-sound");
+const incorrectSound = document.getElementById("incorrect-sound");
+
+// Sample words and hints for the game
+let words = [
+    { word: "addition", hint: "The process of adding numbers" },
+    { word: "meeting", hint: "Event in which people come together" },
+    { word: "number", hint: "Math symbol used for counting" },
+    { word: "exchange", hint: "The act of trading" },
+    { word: "canvas", hint: "Piece of fabric for oil painting" },
+    { word: "garden", hint: "Space for planting flower and plant" },
+    { word: "position", hint: "Location of someone or something" },
+    { word: "feather", hint: "Hair like outer covering of bird" },
+    { word: "comfort", hint: "A state of physical ease" },
+    { word: "tongue", hint: "The muscular organ of mouth" },
+    { word: "expansion", hint: "The process of increase or grow" },
+    { word: "country", hint: "A politically identified region" },
+];
+
 let correctWord, timer;
+let score = 0;
+let highScore = localStorage.getItem("high-score") || 0;
+highScoreText.innerText = highScore;
+
+// Function to end the current game and start a new one
+const endGameAndRestart = () => {
+    score = 0; // Reset the score
+    initGame(); // Start a new game
+};
 
 // Function to initialize the timer
 const initTimer = (maxTime) => {
@@ -117,14 +47,14 @@ const initTimer = (maxTime) => {
       maxTime--;
       return (timeText.innerText = maxTime);
     }
-    alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
-    initGame();
+    alert(`Time's up! ${correctWord.toUpperCase()} was the correct word.`);
+    endGameAndRestart(); // End the game and restart
   }, 1000);
 };
 
 // Function to initialize the game
 const initGame = () => {
-  initTimer(30);
+  initTimer(30); // Start timer with 30 seconds
   let randomObj = words[Math.floor(Math.random() * words.length)];
   let wordArray = randomObj.word.split("");
   for (let i = wordArray.length - 1; i > 0; i--) {
@@ -135,20 +65,40 @@ const initGame = () => {
   hintText.innerText = randomObj.hint;
   correctWord = randomObj.word.toLowerCase();
   inputField.value = "";
-  inputField.setAttribute("maxlength", correctWord.length);
+  inputField.setAttribute("placeholder", "Enter a valid word");
+  scoreText.innerText = score; // Update score display
 };
-initGame();
 
-// Function to check the user's input word
+// Function to check the user's word
 const checkWord = () => {
   let userWord = inputField.value.toLowerCase();
-  if (!userWord) return alert("Please enter the word to check!");
-  if (userWord !== correctWord)
-    return alert(`Oops! ${userWord} is not a correct word`);
-  alert(`Congrats! ${correctWord.toUpperCase()} is the correct word`);
-  initGame();
+  if (!userWord) return alert("Please enter a word to check.");
+
+  if (userWord !== correctWord) {
+    if (incorrectSound) {
+        incorrectSound.currentTime = 0; // Rewind to the start
+        incorrectSound.play();
+    }
+    return alert(`Oops! "${userWord}" is not the correct word.`);
+  }
+
+  if (correctSound) {
+    correctSound.currentTime = 0; // Rewind to the start
+    correctSound.play();
+  }
+  alert(`Congrats! "${correctWord.toUpperCase()}" is the correct word.`);
+  score++; // Increment score
+
+  // Check and update high score if needed
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem("high-score", highScore);
+    highScoreText.innerText = highScore;
+  }
+
+  initGame(); // Load a new word to continue the game
 };
 
-// Event listeners for the refresh and check buttons
-refreshBtn.addEventListener("click", initGame);
+initGame();
+refreshBtn.addEventListener("click", endGameAndRestart);
 checkBtn.addEventListener("click", checkWord);

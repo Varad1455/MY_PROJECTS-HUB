@@ -1,6 +1,23 @@
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
+/* Keyframes for animations */
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; }
+  50% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,24 +31,44 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(180deg, #fff , #565656 );
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
 }
 
 .container {
   width: 420px;
-  border-radius: 10px;
-  background: #00000075;
-  box-shadow: 0 10px 30px rgb(0, 0, 0);
+  border-radius: 15px;
+  /* Glassmorphism effect */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .container h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   font-size: 28px;
   font-weight: 600;
   padding: 20px 25px;
-  text-align: center;
-  border-bottom: 1px solid #333;
-  color: #000000;
-  background: linear-gradient(180deg, red ,black);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.header-logo {
+  height: 35px;
+  width: 35px;
+  /* Invert color to white and add a shadow to match the header style */
+  filter: invert(1) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 .container .content {
@@ -47,8 +84,8 @@ body {
   margin-right: -18px;
   word-break: break-all;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25) ;
-  color: #ff0000;
+  color: #fff;
+  animation: pulse 2s infinite;
 }
 
 .content .details {
@@ -59,6 +96,10 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
   color: #bbb;
+}
+
+.details p:last-of-type {
+  margin-bottom: 0;
 }
 
 .details p b {
@@ -80,10 +121,10 @@ body {
 }
 
 .content input:focus {
-  border-color: #ff0000;
-  background-color: #2222222b;
-  color: #ff0000;
-  box-shadow: 0px 2px 10px rgb(0, 0, 0);
+  border-color: #ff4b2b;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 75, 43, 0.5);
 }
 
 .content input::placeholder {
@@ -117,24 +158,29 @@ body {
 }
 
 .buttons .refresh-word {
-  background: #ffffff00;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .buttons .refresh-word:hover {
-  background: #2b2b2b;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
 }
 
 .buttons .check-word {
-  background: #fdfdfd00;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: 1px solid transparent;
 }
 
 .buttons .check-word:hover {
-  background: #0033ff75;
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  box-shadow: 0 0 15px rgba(255, 75, 43, 0.5);
 }
 
 .hint1{
-  color: red;
-  text-shadow: 1px 1px 5px black
+  color: #ffc107;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
 }
 
 .hint .hint1:hover{
@@ -153,8 +199,8 @@ body {
 }
 
 .material-symbols-outlined{
-  align-items: center;
-   Size: 20
+  vertical-align: middle;
+  font-size: 20px;
 }
 
 .wordcontainer{
@@ -165,6 +211,52 @@ body {
 }
 
 .time {
-  color: red;
-  text-shadow: 1px 1px 5px black;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 5px #ff4b2b, 0 0 10px #ff4b2b;
+}
+
+.score {
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107;
+}
+
+.highscore {
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2; /* Blue-violet glow */
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 450px) {
+  .container {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .container h1 {
+    font-size: 24px;
+    padding: 18px 20px;
+  }
+
+  .header-logo {
+    height: 30px;
+    width: 30px;
+  }
+
+  .container .content {
+    margin: 20px 15px 30px;
+  }
+
+  .content .word {
+    font-size: 30px;
+    letter-spacing: 10px;
+    margin-right: -10px;
+  }
+
+  .details p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 }
